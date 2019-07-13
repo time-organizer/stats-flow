@@ -1,0 +1,13 @@
+{
+  "extends": "strongloop",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "spread": true,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+  },
+  "rules": {
+    "strict": "off"
+  }
+}
