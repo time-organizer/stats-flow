@@ -5,9 +5,17 @@
     "spread": true,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
-    },
+    }
   },
   "rules": {
-    "strict": "off"
+    "strict": "off",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "always",
+        "asyncArrow": "always"
+      }
+    ]
   }
 }
