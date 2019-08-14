@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../../../logger');
-const columnTypes = require('../../utilities/columnTypes');
-const getTasksWithChosenType = require('../../helpers/getTasksWithChosenType');
+const logger = require('../../../../logger');
+const columnTypes = require('../../../utilities/columnTypes');
+const getTasksWithChosenType = require('../../../helpers/getTasksWithChosenType');
 
 router.post('/backlog-tasks', async (req, res) => {
   const { boardId } = req.body;
