@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const columnTypes = require('../utilities/columnTypes');
 
-const getInProgressColumns = async (boardId) => {
+const getInProgressColumns = async (boardId, type) => {
   return await mongoose.connection.db.collection('columns')
     .find({
       boardId,
-      type: columnTypes.IN_PROGRESS,
+      type,
     })
     .toArray();
 };

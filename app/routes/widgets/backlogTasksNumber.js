@@ -4,15 +4,15 @@ const logger = require('../../../logger');
 const columnTypes = require('../../utilities/columnTypes');
 const getTasksWithChosenType = require('../../helpers/getTasksWithChosenType');
 
-router.post('/completed-tasks', async (req, res) => {
+router.post('/backlog-tasks', async (req, res) => {
   const { boardId } = req.body;
 
   try {
-    const completedTasks = await getTasksWithChosenType(boardId, columnTypes.COMPLETE);
+    const backlogTasks = await getTasksWithChosenType(boardId, columnTypes.BACKLOG);
 
     res
       .status(200)
-      .send({ tasksNumber: completedTasks.length });
+      .send({ tasksNumber: backlogTasks.length });
   } catch (error) {
     logger.error(error);
     res

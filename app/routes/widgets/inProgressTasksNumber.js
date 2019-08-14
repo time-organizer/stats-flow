@@ -1,25 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const logger = require('../../../logger');
-const getInProgressColumns = require('../../helpers/getInProgressColumns');
-
-const mongoose = require('mongoose');
+const columnTypes = require('../../utilities/columnTypes');
+const getTasksWithChosenType = require('../../helpers/getTasksWithChosenType');
 
 router.post('/in-progress-tasks', async (req, res) => {
   const { boardId } = req.body;
 
   try {
-    const inProgressColumns = await getInProgressColumns(boardId);
-    const inProgressColumnsIds = inProgressColumns
-      .map(column => column._id.toString());
-
-    const inProgressTasks = await mongoose.connection.db.collection('tasks')
-      .find({ columnId: { $in: inProgressColumnsIds } })
-      .toArray();
+    const inProgressTasks = await getTasksWithChosenType(boardId, columnTypes.IN_PROGRESS);
 
     res
       .status(200)
-      .send({ inProgressTasks: inProgressTasks.length });
+      .send({ tasksNumber: inProgressTasks.length });
   } catch (error) {
     logger.error(error);
     res

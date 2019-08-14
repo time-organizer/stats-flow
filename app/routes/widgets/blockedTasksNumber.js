@@ -4,15 +4,15 @@ const logger = require('../../../logger');
 const columnTypes = require('../../utilities/columnTypes');
 const getTasksWithChosenType = require('../../helpers/getTasksWithChosenType');
 
-router.post('/completed-tasks', async (req, res) => {
+router.post('/blocked-tasks', async (req, res) => {
   const { boardId } = req.body;
 
   try {
-    const completedTasks = await getTasksWithChosenType(boardId, columnTypes.COMPLETE);
+    const blockedTasks = await getTasksWithChosenType(boardId, columnTypes.BLOCKED);
 
     res
       .status(200)
-      .send({ tasksNumber: completedTasks.length });
+      .send({ tasksNumber: blockedTasks.length });
   } catch (error) {
     logger.error(error);
     res

@@ -9,7 +9,7 @@ router.post('/all-tasks', (req, res) => {
 
   Task.countDocuments({ boardId })
     .then((tasksNumber) => {
-      res.status(200).send({ allTasks: tasksNumber.toString() });
+      res.status(200).send({ tasksNumber: tasksNumber.toString() });
     })
     .catch(error => {
       logger.error(error);
